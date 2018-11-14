@@ -13,8 +13,6 @@ function showCarInfo(obj) {
     alert(str);
 }
 
-// showCarInfo(car);
-
 function showTravelTime() {
 
     var length = prompt("Введите расстояние (км)", "");
@@ -27,9 +25,18 @@ function showTravelTime() {
 }
 
 function computeTravelTime(length) {
-    return Math.round(
+    var t = Math.round(
         (length / car.averageSpeed) * 100
         ) / 100;
-}
 
-// TODO каждые 4 часа дороги водителю необходимо делать перерыв на 1 час.
+    // находим остаток
+    var ost = t % 1;
+    // преобразовуем в минуты
+    ost = ost * 0.6;
+    // время (остаток в минутах)
+    t = Math.floor(t) + ost;
+
+    // учитываем перерыв на 1 час (каждые 4 часа дороги).
+    var breakTime = Math.floor(t / 4);
+    return (t + breakTime).toFixed(2);
+}
