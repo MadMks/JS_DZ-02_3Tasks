@@ -13,4 +13,16 @@ function showCarInfo(obj) {
     alert(str);
 }
 
-showCarInfo(car);
+// showCarInfo(car);
+
+function showTravelTime() {
+    var time = computeTravelTime(/**/)  // TODO 1 length
+
+    alert("Расстояние: " + length + "\n"
+        + "Время для преодоления: " + time);
+}
+
+function computeTravelTime(length) {
+    // TODO расчет
+    return length; // TODO возвратить правильную переменную
+}
