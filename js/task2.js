@@ -71,6 +71,8 @@ function multiply(obj1, obj2) {
     tempFract.numerator = obj1.numerator * obj2.numerator;
     tempFract.denomerator = obj1.denomerator * obj2.denomerator;
 
+    tempFract = reduction(tempFract);
+
     return tempFract;
 }
 // Вычисление деления.
@@ -83,9 +85,11 @@ function divide(obj1, obj2) {
     tempFract.numerator = obj1.numerator * obj2.denomerator;	// умножаем числитель 1й дроби на знаменатель 2й дроби
     tempFract.denomerator = obj1.denomerator * obj2.numerator;	// умножаем знаменатель 1й дроби на числитель 2й дроби
 
+    tempFract = reduction(tempFract);
+
     return tempFract;
 }
-// Вычисление суммы.
+// Сокращение дроби.
 function reduction(obj) {
     var nod = 1;	// наибольший общий делитель (Нод)
     var tempFract = {
