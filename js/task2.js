@@ -105,8 +105,6 @@ function reduction(obj) {
         }
     }
 
-    // TODO: попробовать изменить объект, сделать его с НОД
-    
     return tempFract;
 }
 
