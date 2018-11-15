@@ -6,7 +6,10 @@ var time = {
 
 
 function showTime() {
-    alert(time.hh + ":" + time.mm + ":" 
+    alert(time.hh 
+        + ":"
+        + ('0' + time.mm).slice(-2)
+        + ":" 
         + ('0' + time.ss).slice(-2)
         );
 }
@@ -29,15 +32,42 @@ function setSecond(second) {
             second = (time.ss + second) - (mm * 60);
             time.ss = 0;
         }
-        // TODO: изменить минуты в зависимости от секунд.
     }
 
+    // Меняем секунды.
     time.ss += second;
 }
 
 function setMinute(minute) {
+
+    // Проверяем нужно ли менять часы.
+    if (time.mm + minute > 59) {
+        // узнать сколько часов
+        var hh = Math.floor(minute / 60);
+
+        // и сколько минут оставить
+        if (hh == 0) {
+            setHour(1);
+            minute = (time.mm + minute) - 60;
+            time.mm = 0;
+        }
+        else{
+            setHour(hh);
+            minute = (time.mm + minute) - (hh * 60);
+            time.mm = 0;
+        }
+    }
+
     time.mm += minute;
 }
+
+function setHour(hour) {
+    // TODO: set hour
+
+    time.hh += hour;
+}
+
+
 
 function changeSeconds() {
     var ss = prompt("Введите кол-во секунд для изменения времени", "");
@@ -48,5 +78,13 @@ function changeSeconds() {
 }
 
 function changeMinutes() {
+    var mm = prompt("Введите кол-во минут для изменения времени", "");
+
+    setMinute(+mm);
+
+    showTime();
+}
+
+function changeHours() {
     
 }
