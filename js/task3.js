@@ -6,7 +6,7 @@ var time = {
 
 
 function showTime() {
-    alert(time.hh 
+    alert( ( '0' + time.hh).slice(-2) 
         + ":"
         + ('0' + time.mm).slice(-2)
         + ":" 
@@ -63,6 +63,21 @@ function setMinute(minute) {
 
 function setHour(hour) {
     // TODO: set hour
+    // Проверяем нужно ли менять счетчик часов.
+    if (time.hh + hour > 23) {
+        // узнать сколько дней (дни не выводим и не меняем).
+        var dd = Math.floor(hour / 24);
+
+        // и сколько минут оставить
+        if (dd == 0) {
+            hour = (time.hh + hour) - 24;
+            time.hh = 0;
+        }
+        else{
+            hour = (time.hh + hour) - (dd * 24);
+            time.hh = 0;
+        }
+    }
 
     time.hh += hour;
 }
@@ -86,5 +101,9 @@ function changeMinutes() {
 }
 
 function changeHours() {
-    
+    var hh = prompt("Введите кол-во часов для изменения времени", "");
+
+    setHour(+hh);
+
+    showTime();
 }
